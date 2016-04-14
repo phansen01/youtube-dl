@@ -2111,6 +2111,18 @@ def match_filter_func(filter_str):
             return '%s does not pass filter %s, skipping ..' % (video_title, filter_str)
     return _match_func
 
+def match_desc_str(filter_str,dct):
+    return all(dct.get('description').find(item) for item in filter_str.split('&'))
+
+def match_desc_func(filter_str):
+    def _match_desc(info_dict):
+        if match_desc_str(filter_str,info_dict):
+            return None
+        else:
+            video_title = info_dict.get('title', info_dict.get('id', 'video'))
+            return '%s does not pass filter %s, skipping ..' % (video_title, filter_str)
+    return _match_desc
+
 
 def parse_dfxp_time_expr(time_expr):
     if not time_expr:
