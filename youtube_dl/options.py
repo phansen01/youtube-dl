@@ -288,6 +288,16 @@ def parseOpts(overrideArguments=None):
             '"like_count > 100 & dislike_count <? 50 & description" .'
         ))
     selection.add_option(
+        '--match-description',
+        metavar='FILTER', dest='match_description', default=None,
+        help=(
+            'Filter videos by description. Enter a string or sequence of strings separated '
+            'by & to match onl videos containing those words or phrases. For example, '
+            'to matchonly videos with descriptions containing "tables" and "ladders and '
+            'chairs", use --match-description "tables & ladders and chairs"'
+        ))
+            
+    selection.add_option(
         '--no-playlist',
         action='store_true', dest='noplaylist', default=False,
         help='Download only the video, if the URL refers to a video and a playlist.')
