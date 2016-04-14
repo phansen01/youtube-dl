@@ -28,6 +28,7 @@ from .utils import (
     DEFAULT_OUTTMPL,
     DownloadError,
     match_filter_func,
+    match_desc_func,
     MaxDownloadsReached,
     preferredencoding,
     read_batch_urls,
@@ -275,6 +276,9 @@ def _real_main(argv=None):
     match_filter = (
         None if opts.match_filter is None
         else match_filter_func(opts.match_filter))
+   match_description = (
+        None if opts.match_description is None
+        else match_desc_func(opts.match_description))     
 
     ydl_opts = {
         'usenetrc': opts.usenetrc,
@@ -374,6 +378,7 @@ def _real_main(argv=None):
         'playlist_items': opts.playlist_items,
         'xattr_set_filesize': opts.xattr_set_filesize,
         'match_filter': match_filter,
+        'match_description': match_description,
         'no_color': opts.no_color,
         'ffmpeg_location': opts.ffmpeg_location,
         'hls_prefer_native': opts.hls_prefer_native,
