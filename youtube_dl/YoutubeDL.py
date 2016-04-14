@@ -255,6 +255,9 @@ class YoutubeDL(object):
                        If it returns a message, the video is ignored.
                        If it returns None, the video is downloaded.
                        match_filter_func in utils.py is one example for this.
+    match_description: A function that gets called with the info_dict of every video.
+                       If it returns a messsage, the video is ignored.
+                       If it returns None, the video is downloaded.
     no_color:          Do not emit color codes in output.
 
     The following options determine which downloader is picked:
@@ -633,6 +636,11 @@ class YoutubeDL(object):
                 ret = match_filter(info_dict)
                 if ret is not None:
                     return ret
+            match_description = self.params.get('match_description')
+            if match_description is not None:
+                ret = match_description(info_dict)
+                if ret is not None:
+                    return ret                    
 
         return None
 
