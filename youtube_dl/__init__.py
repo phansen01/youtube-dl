@@ -276,7 +276,7 @@ def _real_main(argv=None):
     match_filter = (
         None if opts.match_filter is None
         else match_filter_func(opts.match_filter))
-   match_description = (
+    match_description = (
         None if opts.match_description is None
         else match_desc_func(opts.match_description))     
 
